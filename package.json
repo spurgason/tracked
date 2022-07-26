@@ -1,0 +1,30 @@
+{
+  "name": "tracked",
+  "version": "1.0.0",
+  "description": "React Native project made for tracking D&D stats",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spurgason/tracked.git"
+  },
+  "author": "Shane Purgason",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spurgason/tracked/issues"
+  },
+  "homepage": "https://github.com/spurgason/tracked#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.1",
+    "nodemon": "^2.0.18"
+  }
+}
