@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
-import Logo from "../assets/images/Logo.png";
+import LogoName from "../assets/images/Logo-Name.svg";
 
 const Login = () => {
   const [formData, setFromData] = useState({
@@ -8,7 +8,7 @@ const Login = () => {
     password: "",
   });
 
-  const { email, password, passwordConfirm } = formData;
+  const { email, password } = formData;
 
   const onChange = (event) => {
     setFromData((prevState) => ({
@@ -28,8 +28,8 @@ const Login = () => {
       >
         <div className="max-w-md w-full space-y-8">
           <div>
-            <img className="mx-auto h-28 w-auto" src={Logo} alt="Track" />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <img className="mx-auto h-48 w-auto" src={LogoName} alt="Track" />
+            <h2 className="mt-1 text-center text-3xl font-extrabold text-gray-900">
               Sign In
             </h2>
           </div>

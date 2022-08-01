@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { LoginIcon } from "@heroicons/react/outline";
-import Logo from "../assets/images/Logo.png";
+import LogoName from "../assets/images/Logo-Name.svg";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -31,8 +31,8 @@ const Register = () => {
       >
         <div className="max-w-md w-full space-y-8">
           <div>
-            <img className="mx-auto h-28 w-auto" src={Logo} alt="Track" />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <img className="mx-auto h-48 w-auto" src={LogoName} alt="Track" />
+            <h2 className="mt-1 text-center text-3xl font-extrabold text-grey-700">
               Register your account
             </h2>
           </div>
