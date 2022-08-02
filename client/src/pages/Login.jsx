@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
+import { toast } from "react-toastify";
+import { login, reset } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import LogoName from "../assets/images/Logo-Name.svg";
 
 const Login = () => {
@@ -10,6 +14,25 @@ const Login = () => {
 
   const { email, password } = formData;
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
   const onChange = (event) => {
     setFromData((prevState) => ({
       ...prevState,
@@ -19,10 +42,19 @@ const Login = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    dispatch(login(userData));
   };
+
+  // Spinner
   return (
     <>
-      <form
+      <div
         onSubmit={onSubmit}
         className="min-h-full flex items-center justify-center mt-20 py-12 px-4 sm:px-6 lg:px-8"
       >
@@ -33,7 +65,7 @@ const Login = () => {
               Sign In
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" onSubmit={onSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -66,6 +98,7 @@ const Login = () => {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
+                  onChange={onChange}
                 />
               </div>
             </div>
@@ -85,7 +118,7 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </form>
+      </div>
     </>
   );
 };
