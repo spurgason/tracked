@@ -2,15 +2,39 @@ import { useState, useEffect } from "react";
 import { LoginIcon } from "@heroicons/react/outline";
 import LogoName from "../assets/images/Logo-Name.svg";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { register, reset } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const Register = () => {
   const [formData, setFromData] = useState({
+    name: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
 
-  const { email, password, passwordConfirm } = formData;
+  const { name, email, password, passwordConfirm } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (event) => {
     setFromData((prevState) => ({
@@ -21,14 +45,27 @@ const Register = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+
+    if (password !== passwordConfirm) {
+      toast.error("Passwords do not match");
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+      };
+
+      dispatch(register(userData));
+    }
   };
+
+  if (isLoading) {
+    // return spinner
+  }
 
   return (
     <>
-      <form
-        onSubmit={onSubmit}
-        className="min-h-full flex items-center justify-center mt-20 py-12 px-4 sm:px-6 lg:px-8"
-      >
+      <div className="min-h-full flex items-center justify-center mt-20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
             <img className="mx-auto h-48 w-auto" src={LogoName} alt="Track" />
@@ -36,9 +73,24 @@ const Register = () => {
               Register your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" onSubmit={onSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="email-address" className="sr-only">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={name}
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                  placeholder="Name"
+                  onChange={onChange}
+                />
+              </div>
               <div>
                 <label htmlFor="email-address" className="sr-only">
                   Email address
@@ -50,12 +102,11 @@ const Register = () => {
                   value={email}
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   onChange={onChange}
                 />
               </div>
-
               <div>
                 <label htmlFor="password" className="sr-only">
                   Password
@@ -69,6 +120,7 @@ const Register = () => {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
+                  onChange={onChange}
                 />
               </div>
               <div>
@@ -77,7 +129,7 @@ const Register = () => {
                 </label>
                 <input
                   id="password-confirm"
-                  name="password-confirm"
+                  name="passwordConfirm"
                   type="password"
                   value={passwordConfirm}
                   required
@@ -87,8 +139,8 @@ const Register = () => {
                 />
               </div>
             </div>
-            <div class="grid justify-items-end text-sm">
-              <span class="font-medium  text-teal-600 hover:text-teal-500">
+            <div className="grid justify-items-end text-sm">
+              <span className="font-medium  text-teal-600 hover:text-teal-500">
                 <Link to="/login"> Already have an account?</Link>
               </span>
             </div>
@@ -108,7 +160,7 @@ const Register = () => {
             </div>
           </form>
         </div>
-      </form>
+      </div>
     </>
   );
 };

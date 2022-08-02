@@ -8,7 +8,9 @@ import {
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import Logo from "../assets/images/Logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, reset } from "../features/auth/authSlice";
 
 const dashboard = [
   {
@@ -30,6 +32,14 @@ function classNames(...classes) {
 }
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/login");
+  };
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -107,18 +117,28 @@ const Header = () => {
             </Popover>
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Link to="/login">
-              <span className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                Sign in
-              </span>
-            </Link>
+            {user ? (
+              <button onClick={onLogout}>
+                <span className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700">
+                  Logout
+                </span>
+              </button>
+            ) : (
+              <>
+                <Link to="/login">
+                  <span className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                    Sign in
+                  </span>
+                </Link>
 
-            <Link to="/register">
-              {" "}
-              <span className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700">
-                Sign up
-              </span>
-            </Link>
+                <Link to="/register">
+                  {" "}
+                  <span className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700">
+                    Sign up
+                  </span>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
