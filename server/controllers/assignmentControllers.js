@@ -26,16 +26,14 @@ const putAssignment = asynchandler(async (req, res) => {
     throw new Error("Assignment not found");
   }
 
-  const user = await User.findById(req.user.id);
-
   // Checks user
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User not found");
   }
 
   // Logged in user is assignments user
-  if (assignment.user.toString() !== user.id) {
+  if (assignment.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
   }
@@ -58,16 +56,14 @@ const deleteAssignment = asynchandler(async (req, res) => {
     throw new Error("Assignment not found");
   }
 
-  const user = await User.findById(req.user.id);
-
   // Checks user
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User not found");
   }
 
   // Logged in user is assignments user
-  if (assignment.user.toString() !== user.id) {
+  if (assignment.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
   }
