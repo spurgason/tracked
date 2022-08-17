@@ -10,8 +10,8 @@ const getAssignment = asynchandler(async (req, res) => {
 
 const postAssignment = asynchandler(async (req, res) => {
   const assignment = await Assignment.create({
-    subject: req.body.subject,
-    class: req.body.class,
+    assignment: req.body.assignment,
+    className: req.body.className,
     dueDate: req.body.dueDate,
     user: req.user.id,
   });

@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LogoName from "../assets/images/Logo-Name.svg";
 
 const Login = () => {
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
@@ -34,7 +34,7 @@ const Login = () => {
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (event) => {
-    setFromData((prevState) => ({
+    setFormData((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));

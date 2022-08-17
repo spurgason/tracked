@@ -7,13 +7,13 @@ const assignmentSchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
-    subject: {
+    assignment: {
       type: String,
-      required: [true, "Assignments must have a subject"],
+      // required: [true, "Assignments must have a subject"],
     },
-    class: {
+    className: {
       type: String,
-      required: [true, "Assignments must have a class"],
+      // required: [true, "Assignments must have a class"],
     },
     dueDate: {
       type: String,
