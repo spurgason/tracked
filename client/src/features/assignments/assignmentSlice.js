@@ -48,6 +48,25 @@ export const getAssignments = createAsyncThunk(
   }
 );
 
+export const deleteAssignment = createAsyncThunk(
+  "assignment/delete",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await assignmentService.deleteAssignment(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const assignmentSlice = createSlice({
   name: "assignment",
   initialState,
@@ -62,7 +81,7 @@ const assignmentSlice = createSlice({
       .addCase(createAssignment.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.assignments.push(action.payload);
+        state.assignments.assignment.push(action.payload);
       })
       .addCase(createAssignment.rejected, (state, action) => {
         state.isLoading = false;
@@ -81,6 +100,22 @@ const assignmentSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(deleteAssignment.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAssignment.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.assignments = state.assignments.assignment.filter(
+          (assignment) => assignment._id !== action.payload.id
+        );
+        state.message = action.payload.id;
+      })
+      .addCase(deleteAssignment.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload.id;
       });
   },
 });

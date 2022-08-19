@@ -28,9 +28,22 @@ const getAssignments = async (token) => {
   return response.data;
 };
 
+const deleteAssignment = async (assignmentId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.delete(API_URL + "/" + assignmentId, config);
+
+  return response.data;
+};
+
 const assignmentService = {
   createAssignment,
   getAssignments,
+  deleteAssignment,
 };
 
 export default assignmentService;

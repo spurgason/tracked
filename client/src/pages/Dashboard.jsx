@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import AssignmentForm from "../components/AssignmentForm";
 import AssignmentItem from "../components/AssignmentItem";
-import { getAssignments, reset } from "../features/assignments/assignmentSlice";
+import { getAssignments } from "../features/assignments/assignmentSlice";
+import { reset } from "../features/auth/authSlice";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -14,14 +15,6 @@ const Dashboard = () => {
   const { assignments, isLoading, isError, message } = useSelector(
     (state) => state.assignments
   );
-
-  if (
-    assignments &&
-    assignments.assignment &&
-    assignments.assignment.length > 0
-  ) {
-    console.log(assignments.assignment);
-  }
 
   useEffect(() => {
     if (isError) {
