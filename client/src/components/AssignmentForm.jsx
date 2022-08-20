@@ -40,11 +40,13 @@ const AssignmentForm = () => {
   };
 
   return (
-    <div className="mt-8 w-96">
-      <h2 className="text-center font-semibold text-lg">Add Assignment</h2>
+    <div className="mt-8 w-auto">
+      <h2 className="text-center font-semibold text-2xl mb-4">
+        Add Assignment
+      </h2>
       <form onSubmit={onSubmit} className="grid grid-cols-1 gap-6">
         <label className="block">
-          <span>Assignment</span>
+          <span className="font-medium text-lg">Assignment</span>
           <input
             type="text"
             className="
@@ -62,7 +64,7 @@ const AssignmentForm = () => {
           />
         </label>
         <label className="block">
-          <span>Class</span>
+          <span className="font-medium text-lg">Class</span>
           <input
             type="text"
             className="
@@ -80,7 +82,7 @@ const AssignmentForm = () => {
           />
         </label>
         <label className="block">
-          <span>Due Date</span>
+          <span className="font-medium text-lg">Due Date</span>
           <input
             type="date"
             className="
