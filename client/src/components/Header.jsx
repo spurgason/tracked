@@ -1,20 +1,10 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import {
-  ChartBarIcon,
-  CursorClickIcon,
-  MenuIcon,
-  XIcon,
-} from "@heroicons/react/outline";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Logo from "../assets/images/Logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 const Header = () => {
   const navigate = useNavigate();
