@@ -1,12 +1,14 @@
-![Logo](/client/src/assets/images/Logo-Name.svg)
+<div style="display:flex; justify-content:center;">
+  <img src="client/src/assets/images/Logo-Name.svg" width="400"/>
+</div>
 
 # Tracked
 
-Something
+Tracked is an easy to use application that allows busy students keep track of assignments and their due dates.
 
 ## Demo
 
-Gif here
+![Demo](/client/src/assets/docs/Animation.gif)
 
 Link to [application](https://assignmenttracked.herokuapp.com/login)
 
