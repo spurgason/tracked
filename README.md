@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" style="background-color: white; height: 150px; width: 75%;">
   <img src="client/src/assets/images/Logo-Name.svg" width="400"/>
 </div>
 
