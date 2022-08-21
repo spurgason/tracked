@@ -1,4 +1,4 @@
-<div style="display:flex; justify-content:center;">
+<div align="center">
   <img src="client/src/assets/images/Logo-Name.svg" width="400"/>
 </div>
 
