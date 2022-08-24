@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { LoginIcon } from "@heroicons/react/outline";
-import LogoName from "../assets/images/Logo-Name.svg";
+import Logo from "../assets/images/Logo.svg";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, reset } from "../features/auth/authSlice";
@@ -65,11 +65,16 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-full flex items-center justify-center mt-20 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-full flex items-center justify-center mt-32 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <img className="mx-auto h-48 w-auto" src={LogoName} alt="Track" />
-            <h2 className="mt-1 text-center text-3xl font-extrabold text-grey-700">
+            <div className="flex justify-center items-center mb-5">
+              <img className="h-16 w-auto" src={Logo} alt="Track" />
+              <h2 className="font-bold h-15 text-5xl ml-4 italic text-gray-900 ">
+                Tracked{" "}
+              </h2>
+            </div>
+            <h2 className="mt-1 text-center text-3xl font-extrabold text-grey-900">
               Register your account
             </h2>
           </div>

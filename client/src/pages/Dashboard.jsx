@@ -17,6 +17,20 @@ const Dashboard = () => {
     (state) => state.assignments
   );
 
+  let totalAssignments = [];
+
+  if (
+    assignments &&
+    assignments.assignment &&
+    assignments.assignment.length > 0
+  ) {
+    totalAssignments = [...assignments.assignment];
+
+    const time = new Date(totalAssignments[0].dueDate);
+
+    console.log(time);
+  }
+
   useEffect(() => {
     if (isError) {
       console.error(message);
@@ -51,18 +65,25 @@ const Dashboard = () => {
         </h1>
       </section>
 
-      <section className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-5 mx-5">
-        <div className="sm: w-auto  mx-2 lg:col-span-1 sm: col-span-2 border-2 rounded-md border-teal-600 p-6">
+      <section className="grid gap-4 grid-cols-1 md:grid-cols-1 lg:grid-cols-3  mt-5 mx-5">
+        <div className=" mx-2 col-span-1 border-2 rounded-md border-teal-600   p-6 shadow-lg">
           <AssignmentForm />
         </div>
-        <div className=" w-auto col-span-2">
-          {assignments &&
-          assignments.assignment &&
-          assignments.assignment.length > 0 ? (
-            <div className="">
-              {assignments.assignment.map((assignment) => (
-                <AssignmentItem key={assignment._id} assignment={assignment} />
-              ))}
+        <div className=" w-auto col-span-2 ">
+          {totalAssignments && totalAssignments.length > 0 ? (
+            <div>
+              {totalAssignments
+                .sort((a, b) =>
+                  new Date(a.dueDate).getTime() > new Date(b.dueDate).getTime()
+                    ? 1
+                    : -1
+                )
+                .map((assignment) => (
+                  <AssignmentItem
+                    key={assignment._id}
+                    assignment={assignment}
+                  />
+                ))}
             </div>
           ) : (
             <h2 className="font-bold text-xl sm: text-center">
