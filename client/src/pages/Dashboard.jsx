@@ -25,10 +25,6 @@ const Dashboard = () => {
     assignments.assignment.length > 0
   ) {
     totalAssignments = [...assignments.assignment];
-
-    const time = new Date(totalAssignments[0].dueDate);
-
-    console.log(time);
   }
 
   useEffect(() => {
