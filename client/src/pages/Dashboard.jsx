@@ -1,12 +1,17 @@
+// Imports
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { getAssignments } from "../features/assignments/assignmentSlice";
+import { reset } from "../features/auth/authSlice";
+
+// Components
+import Greeting from "../components/Greeting";
 import AssignmentForm from "../components/AssignmentForm";
 import AssignmentItem from "../components/AssignmentItem";
 import Spinner from "../components/Spinner";
-import { getAssignments } from "../features/assignments/assignmentSlice";
-import { reset } from "../features/auth/authSlice";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -44,22 +49,12 @@ const Dashboard = () => {
   }, [navigate, user, isError, message, dispatch]);
 
   if (isLoading) {
-    return (
-      <div className="flex h-screen">
-        <div className="m-auto">
-          <Spinner />;<h3 className=" font-xl font-bold ">Loading...</h3>
-        </div>
-      </div>
-    );
+    return <Spinner />;
   }
 
   return (
     <>
-      <section className="flex justify-center mt-5">
-        <h1 className="text-center font-bold text-3xl border-b-2 my-3 pb-2 w-2/3">
-          Hello, {user && user.name} &#128075;
-        </h1>
-      </section>
+      <Greeting user={user} />
 
       <section className="grid gap-4 grid-cols-1 md:grid-cols-1 lg:grid-cols-3  mt-5 mx-5">
         <div className=" mx-2 col-span-1 border-2 rounded-md border-teal-600   p-6 shadow-lg">
