@@ -9,6 +9,9 @@ const SignInInput = (props) => {
         name={props.attributes}
         type={props.type}
         value={props.value}
+        minLength={props.minLength}
+        title={props.title}
+        pattern={props.pattern}
         required
         className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
         placeholder={props.text}
