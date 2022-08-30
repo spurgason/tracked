@@ -35,8 +35,9 @@ const Header = () => {
             <Popover className="relative">
               {({ open }) => (
                 <>
-                  <span className="font-semibold text-2xl">Tracked</span>
-
+                  <span className="font-semibold text-3xl italic text-gray-900">
+                    Tracked
+                  </span>
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-200"

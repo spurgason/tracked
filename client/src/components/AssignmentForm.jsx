@@ -55,7 +55,7 @@ const AssignmentForm = () => {
                     w-full
                     px-0.5
                     border-0 border-b-2 border-gray-200
-                    focus:ring-0 focus:border-black
+                    focus:ring-0 focus:border-teal-600
                   "
             name="assignment"
             id="assignment"
@@ -73,7 +73,7 @@ const AssignmentForm = () => {
                     w-full
                     px-0.5
                     border-0 border-b-2 border-gray-200
-                    focus:ring-0 focus:border-black
+                    focus:ring-0 focus:border-teal-600
                   "
             name="className"
             id="className"
@@ -91,7 +91,7 @@ const AssignmentForm = () => {
                     w-full
                     px-0.5
                     border-0 border-b-2 border-gray-200
-                    focus:ring-0 focus:border-black
+                    focus:ring-0 focus:border-teal-600
                   "
             name="dueDate"
             id="dueDate"
