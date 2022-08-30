@@ -115,8 +115,8 @@ To run this project, you will need to add the following environment variables to
 ## Roadmap
 
 - [ ] Allow users to update assignments
-- [ ] Format dates to en-US format
-- [ ] Improve styling
+- [x] Format dates to en-US format
+- [x] Improve styling
 - [ ] Add calendar view
 - [ ] Integrate dark mode into the application
 - [ ] PWA application or native phone application
