@@ -57,10 +57,10 @@ const Dashboard = () => {
       <Greeting user={user} />
 
       <section className="grid gap-4 grid-cols-1 md:grid-cols-1 lg:grid-cols-3  mt-5 mx-5">
-        <div className=" mx-2 col-span-1 border-2 rounded-md border-teal-600   p-6 shadow-lg">
+        <div className=" mx-2 col-span-1 border-2 rounded-md border-white p-6 shadow-[0_4px_6px_2px_rgba(0,0,0,0.3)] hover:shadow-[0_10px_15px_7px_rgba(0,0,0,0.3)] hover: ease-in duration-100">
           <AssignmentForm />
         </div>
-        <div className=" w-auto col-span-2 ">
+        <div className=" w-auto col-span-2 mt-5">
           {totalAssignments && totalAssignments.length > 0 ? (
             <div>
               {totalAssignments
@@ -77,7 +77,7 @@ const Dashboard = () => {
                 ))}
             </div>
           ) : (
-            <h2 className="font-bold text-xl sm: text-center">
+            <h2 className="font-bold text-xl sm: text-center sm: mt-7">
               You do not have any assignments
             </h2>
           )}

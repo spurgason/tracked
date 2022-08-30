@@ -94,6 +94,13 @@ const RegisterForm = () => {
           type={"password"}
           attributes={"password"}
           text={"Password"}
+          minLength={"6"}
+          title={
+            "Minimum six characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+          }
+          pattern={
+            "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"
+          }
         />
 
         <SignInInput
