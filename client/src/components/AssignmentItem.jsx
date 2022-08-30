@@ -17,10 +17,15 @@ const AssignmentItem = ({ assignment }) => {
   ).toString();
   const dueDate = formattedDate.substr(formattedDate.indexOf(" ") + 1, 11);
 
-  // TODO: assignment icons change color if past due date
+  const passedDue = new Date(formattedDate).getTime() < new Date().getTime();
+
   return (
     <div className="border-l-4 border-grey-700">
-      <div className="grid grid-cols-4 justify-items-center rounded-md mt-3 mx-3 p-2 shadow bg-teal-100 hover:shadow-md">
+      <div
+        className={`grid grid-cols-4 justify-items-center rounded-md mt-3 mx-3 p-2 shadow  hover:shadow-md ${
+          passedDue ? "bg-red-300" : "bg-teal-200"
+        }`}
+      >
         <h3 className=" text-gray-900 text-md xl: text-base font-medium">
           {assignment.assignment}
         </h3>
