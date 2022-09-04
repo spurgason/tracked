@@ -22,19 +22,21 @@ const AssignmentItem = ({ assignment }) => {
   return (
     <div className="border-l-4 border-grey-700">
       <div
-        className={`grid grid-cols-4 justify-items-center rounded-md mt-3 mx-3 p-2 shadow  hover:shadow-md ${
-          passedDue ? "bg-red-300" : "bg-teal-200"
+        className={`grid grid-cols-4 justify-items-center content-center rounded-md mt-3 mx-3 p-2 shadow  hover:shadow-md ${
+          passedDue ? "bg-yellow-200" : "bg-teal-200"
         }`}
       >
-        <h3 className=" text-gray-900 text-md xl: text-base font-medium">
+        <span className="text-sm lg: text-md text-gray-900 font-semibold self-center">
           {assignment.assignment}
-        </h3>
-        <p className="text-md text-gray-900 font-medium">
+        </span>
+        <span className="text-sm lg: text-md text-gray-900 font-semibold self-center">
           {assignment.className}
-        </p>
-        <p className="text-md text-gray-900 font-medium">{dueDate}</p>
+        </span>
+        <time className="text-sm lg: text-md text-gray-900 font-semibold self-center">
+          {dueDate}
+        </time>
         <button
-          className="text-md font-medium text-red-500 hover:text-red-700 "
+          className="text-md font-medium text-red-500 hover:text-red-700"
           onClick={() => dispatch(deleteAssignment(assignment._id))}
         >
           <TrashIcon className="h-5 w-5 hover:scale-125 transition delay-150 duration-200" />
